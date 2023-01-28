@@ -1,0 +1,30 @@
+import { Connection, Repository } from 'typeorm';
+import { DatabaseCalculationService } from 'src/modules/cron/database-calculation.service';
+import { GameAtp, GameWta } from '../game/entity/game.entity';
+import { RatingAtp, RatingWta } from '../ratings/entity/rating.entity';
+import { StatAtp, StatWta } from '../stat/entity/stat.entity';
+export declare class DatabaseSynchronizerService {
+    private connection;
+    private databaseCalculationService;
+    private GameAtpRepository;
+    private GameWtaRepository;
+    private StatAtpRepository;
+    private StatWtaRepository;
+    private RatingAtpRepository;
+    private RatingWtaRepository;
+    constructor(connection: Connection, databaseCalculationService: DatabaseCalculationService, GameAtpRepository: Repository<GameAtp>, GameWtaRepository: Repository<GameWta>, StatAtpRepository: Repository<StatAtp>, StatWtaRepository: Repository<StatWta>, RatingAtpRepository: Repository<RatingAtp>, RatingWtaRepository: Repository<RatingWta>);
+    synchZeroProgress(): Promise<void>;
+    clearSequences(): Promise<void>;
+    private drawOrderAtp;
+    private drawOrderWta;
+    parse(): Promise<void>;
+    private drawAtp;
+    private drawWta;
+    private synchronizeOther;
+    private synchronizeRating;
+    private synchronizeTournament;
+    private synchronizeGame;
+    private synchronizeToday;
+    private synchronizeStat;
+    private saveDrawPosition;
+}
